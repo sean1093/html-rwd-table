@@ -1,6 +1,9 @@
 # html-rwd-table
 A RWD-based html table extend tool which made by pure JavaScript and CSS, you don't need to add any other dependency libaraies.
 
+* demo: [rwd-table-extend demo]
+[rwd-table-extend demo]: <http://sean1093.github.io/demo/rwd-table-extend/rwd-table.html>
+
 ### Getting Started:
 When you want to use RWD html table extension, you need to include both CSS file and JavaScript file.
 
