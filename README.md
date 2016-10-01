@@ -9,7 +9,71 @@ When you want to use RWD html table extension, you need to include both CSS file
 <script src="js/rwd-table-extend.js"></script>
 ```
 
+
+#### Create Container
 First, you need to create a <code>div</code> with id.
+
 ```html
 <div id="myTable"></div>
 ```
+
+
+#### Initial RWD Table
+Then, create <code>rwdTableExtend</code> object and initial table.
+
+```js
+var myTable = new rwdTableExtend("myTable");
+myTable.initTable();
+```
+
+#### Setting Your Header 
+You need to insert an array for your header.
+
+```js
+myTable.addTableHead(['ID','Name', 'Number', 'Class', 'Address']);
+```
+or 
+
+```js
+var header = ['ID','Name', 'Number', 'Class', 'Address'];
+myTable.addTableHead(header);
+```
+
+#### Add Data
+When you want to add table data, you need to define a schema JSON like this:
+```js
+var row1 = {
+                "ID": "test1",
+                "Name": "Tom",
+                "Number":234,
+                "Class": "A",
+                "Address": "Taiwan, Taipei"
+            };
+myTable.addTableRow(row1);          
+```
+
+
+### Other API Function
+
+#### Update Header 
+After setting your header, you also can update header by using this function.
+
+```js
+myTable.updateHead(['ID','Name', 'Number', 'Class', 'Address']);
+```
+or 
+
+```js
+var header = ['ID','Name', 'Number', 'Class', 'Address'];
+myTable.updateHead(header);
+```
+
+
+#### Set Hide Column
+If you want to let something unimportant columns hide when screen is small, use <code>hideContent(header-name)</code>
+```js
+myTable.hideContent("Address");
+```
+
+
+
