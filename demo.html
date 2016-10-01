@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <link href="css/rwd-table-extend.css" rel="stylesheet">
+        <script src="js/rwd-table-extend.js"></script>
+
+    </head>
+    <body>
+        <button onclick="myTable.deleteRow(1)">Delete</button>
+        <button onclick="updateH()">Update Head</button>
+        <div id="myTable"></div>
+
+        <script type="text/javascript">
+            var myTable = new rwdTableExtend("myTable");
+            myTable.initTable();
+
+            myTable.addTableHead(['ID','Name', 'Number', 'Class', 'Address']);
+
+            var row1 = {
+                "ID": "test1",
+                "Name": "Tom",
+                "Number":234,
+                "Class": "A",
+                "Address": "Taiwan, Taipei"
+            };
+
+            var row2 = {
+                "ID": "test2",
+                "Name": "Sam",
+                "Number":123,
+                "Class": "B",
+                "Address": "Taiwan, Taipei"
+            };
+
+            var row3 = {
+                "ID": "test3",
+                "Name": "AAA",
+                "Number":123533,
+                "Class": "A",
+                "Address": "Taiwan, New Taipei"
+            };
+
+            myTable.addTableRow(row1);
+            myTable.addTableRow(row2);
+            myTable.addTableRow(row3);
+
+            function updateH(){
+                myTable.updateHead(['ID1','Name1', 'Number1', 'Class1', 'Address1']);
+            }
+            
+
+            myTable.hideContent("Address");
+
+
+
+        </script>
+    </body>
+</html>
