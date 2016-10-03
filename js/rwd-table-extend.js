@@ -45,10 +45,15 @@
             this.addTableHead(array);
     	}
     };
-    rwdTableExtend.prototype.addTableRow = function(data) {
+    rwdTableExtend.prototype.addTableRow = function(data, locate) { // data, row index
     	this.table = document.getElementById("rwd-table");
         this.tbody = this.table.getElementsByTagName('tbody')[0];
-        var dRow = this.tbody.insertRow(this.tbody.rows.length);
+
+        var rowIdx = this.tbody.rows.length;
+        if(locate !== undefined || locate !== null) {
+            rowIdx = locate;
+        }
+        var dRow = this.tbody.insertRow(rowIdx);
         var idx = 0;
         for(var key in data){
             var cell = dRow.insertCell(idx);

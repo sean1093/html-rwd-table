@@ -55,6 +55,10 @@ var row1 = {
 myTable.addTableRow(row1);          
 ```
 
+If you want to insert with specific row index, you can give row index in second parameter. For example, insert data into row 5. 
+```js
+myTable.addTableRow(row1, 5);          
+```
 
 ### Other API Function
 
