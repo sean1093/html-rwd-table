@@ -45,13 +45,14 @@ myTable.addTableHead(header);
 #### Add Data
 When you want to add table data, you need to define a schema JSON like this:
 ```js
-var row1 = {
-                "ID": "test1",
-                "Name": "Tom",
-                "Number":234,
-                "Class": "A",
-                "Address": "Taiwan, Taipei"
-            };
+var row1 = 
+{
+    "ID": "test1",
+    "Name": "Tom",
+    "Number":234,
+    "Class": "A",
+    "Address": "Taiwan, Taipei"
+};
 myTable.addTableRow(row1);          
 ```
 
