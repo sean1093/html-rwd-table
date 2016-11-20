@@ -84,4 +84,12 @@ myTable.hideContent("Address");
 ```
 
 
+#### Delete Row
+Delete row by using <code>deleteRow(row-index)</code>
+```js
+myTable.deleteRow(1);
+```
+
+
+
 
