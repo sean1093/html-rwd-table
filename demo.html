@@ -6,7 +6,9 @@
 
     </head>
     <body>
-        <button onclick="myTable.deleteRow(1)">Delete</button>
+        <input type="text" id="deleteRow">
+        <input type="text" id="deleteRowCount" value="1">
+        <button onclick="deleteRow()">Delete</button>
         <button onclick="updateH()">Update Head</button>
         <div id="myTable"></div>
 
@@ -49,6 +51,12 @@
 
             function updateH(){
                 myTable.updateHead(['ID1','Name1', 'Number1', 'Class1', 'Address1']);
+            }
+
+            function deleteRow(){
+                var locate = document.getElementById("deleteRow").value;
+                var count = document.getElementById("deleteRowCount").value;
+                myTable.deleteRow(locate,count);
             }
             
 
