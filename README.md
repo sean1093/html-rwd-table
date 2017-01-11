@@ -8,8 +8,8 @@ A RWD-based html table extend tool which made by pure JavaScript and CSS, you do
 When you want to use RWD html table extension, you need to include both CSS file and JavaScript file.
 
 ```html
-<link href="css/rwd-table-extend.css" rel="stylesheet">
-<script src="js/rwd-table-extend.js"></script>
+<link href="http://sean1093.github.io/lib/css/rwd-table-extend/1.0.0/rwd-table-extend.css" rel="stylesheet">
+<script src="http://sean1093.github.io/lib/js/rwd-table-extend/1.0.0/rwd-table-extend.min.js"></script>
 ```
 
 
