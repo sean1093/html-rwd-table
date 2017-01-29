@@ -2,7 +2,7 @@
  * rwd-table-extend.js
  * A RWD-based html table extend tool which made by pure JavaScript and CSS
  * see: https://github.com/sean1093/html-rwd-table for details
- * @version: v1.0.1 - dev
+ * @version: v1.0.0
  * @author: Sean Chou
  * @licensed: under MIT (https://github.com/sean1093/html-rwd-table/blob/master/LICENSE)
  */
@@ -16,6 +16,7 @@
         this.div = document.getElementById(divId);
     };
     rwdTableExtend.prototype.initTable = function() {
+        var target = document.getElementById(this.divId);
         var table = document.createElement("table");
         table.id = "rwd-table";
         table.className = "rwd-table";
@@ -23,7 +24,7 @@
         var tbody = document.createElement("tbody");
         table.appendChild(thead);
         table.appendChild(tbody);
-        this.div.appendChild(table);  
+        target.appendChild(table);  
     };
     rwdTableExtend.prototype.addTableHead = function(array) {
         this.table = document.getElementById("rwd-table");
@@ -67,21 +68,14 @@
         while(count>0){
           document.getElementById("rwd-table").deleteRow(idx);
           count--;  
-        }        
+        }
+        
     };
     rwdTableExtend.prototype.hideContent = function(key) {
         var css = document.createElement("style");
         css.type = "text/css";
         css.innerHTML = "@media screen and (max-width:451px) { .rwd-table td[data-th='"+key+"'] { display: none; }}";
         document.body.appendChild(css);
-    };
-
-    //set
-    rwdTableExtend.prototype.setHeaderBackColor = function(color) {
-        var target = document.getElementById(this.divId);
-    };
-    rwdTableExtend.prototype.setHeaderForeColor = function(color) {
-      
     };
 
     if (typeof module !== 'undefined' && typeof module.exports !== 'undefined')

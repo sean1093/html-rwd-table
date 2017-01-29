@@ -1,7 +1,8 @@
 .rwd-table {
-    /*border-collapse: collapse;*/
+    // border-collapse: collapse;
     width: 100%;
     display: table;
+    // box-shadow: 3px 3px 3px #888888;
 }
 
 .rwd-table th, td {
@@ -41,9 +42,9 @@ table, th, td {
 }
 
 .rwd-table th {
-/*    background-color: #2196F3;
-    color: #FFFFFF;
-    text-align: center;*/
+    // background-color: #2196F3;
+    // color: #FFFFFF;
+    // text-align: center;
 }
 
 .rwd-table tr:hover td {
