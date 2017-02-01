@@ -2,16 +2,49 @@
 <html>
     <head>
         <link href="css/rwd-table-extend.css" rel="stylesheet">
-        <script src="js/rwd-table-extend.js"></script>
+        <style type="text/css">
+            #control {
+                margin: 5px;
+                border-collapse: collapse;
+            }
 
+            #updateRow, #updateHeader {
+                margin: 10px;
+            }
+        </style>
     </head>
     <body>
-        <input type="text" id="deleteRow">
-        <input type="text" id="deleteRowCount" value="1">
-        <button onclick="deleteRow()">Delete</button>
-        <button onclick="updateH()">Update Head</button>
+        <div id="control">
+            <div id="updateRow">
+                Row Index: <input type="text" id="deleteRow" value="0"><br>
+                Row Count: <input type="text" id="deleteRowCount" value="1"><br>
+                <button onclick="deleteRow()">Delete</button>  
+                <button onclick="insertRow()">Insert</button>  
+            </div>
+            <div id="updateHeader">
+                <span>Select Header Background Color</span>
+                <select id="backColor">
+                    <option value="white">white</option>
+                    <option value="#FF8A80">red</option>
+                    <option value="#82B1FF">blue</option>
+                    <option value="#A7FFEB">green</option>
+                    <option value="#FFFF8D">yellow</option>
+                </select><br>
+                <span>Select Header Text Color</span>
+                <select id="foreColor">
+                    <option value="black">black</option>
+                    <option value="#FF8A80">red</option>
+                    <option value="#82B1FF">blue</option>
+                    <option value="#A7FFEB">green</option>
+                    <option value="#FFFF8D">yellow</option>
+                </select>
+                <br>
+                <button onclick="setColor()">Set Color</button> 
+                <button onclick="updateH()">Update Header Text</button>   
+            </div>                   
+        </div>
         <div id="myTable"></div>
-
+        <script src="js/rwd-table-extend.js"></script>
         <script type="text/javascript">
             var myTable = new rwdTableExtend("myTable");
             myTable.initTable();
@@ -42,12 +75,14 @@
                 "Address": "Taiwan, New Taipei"
             };
 
-            myTable.addTableRow(row1);
-            myTable.addTableRow(row2);
-            myTable.addTableRow(row3);
+            myTable.addDatas(row1);
+            myTable.addDatas(row2);
+            myTable.addDatas(row3);
 
             //insert with row index
-            myTable.addTableRow(row3,0);
+            myTable.addDatas(row3,0);
+
+            myTable.hideContent("Address");
 
             function updateH(){
                 myTable.updateHead(['ID1','Name1', 'Number1', 'Class1', 'Address1']);
@@ -58,11 +93,22 @@
                 var count = document.getElementById("deleteRowCount").value;
                 myTable.deleteRow(locate,count);
             }
-            
 
-            myTable.hideContent("Address");
+            function insertRow(){
+                var locate = document.getElementById("deleteRow").value;
+                var count = document.getElementById("deleteRowCount").value;
+                myTable.insertRow(locate,count);
+            }
 
+            function setColor(){
+                var bc = document.getElementById("backColor");
+                var bcGet = bc.options[bc.selectedIndex].value;
+                var fc = document.getElementById("foreColor");
+                var fcGet = fc.options[fc.selectedIndex].value;
+                myTable.setHeaderBackColor(bcGet);
+                myTable.setHeaderTextColor(fcGet);
 
+            }
 
         </script>
     </body>

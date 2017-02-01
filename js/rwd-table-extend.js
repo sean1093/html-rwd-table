@@ -2,7 +2,7 @@
  * rwd-table-extend.js
  * A RWD-based html table extend tool which made by pure JavaScript and CSS
  * see: https://github.com/sean1093/html-rwd-table for details
- * @version: v1.0.1 - dev
+ * @version: v1.0.1
  * @author: Sean Chou
  * @licensed: under MIT (https://github.com/sean1093/html-rwd-table/blob/master/LICENSE)
  */
@@ -14,26 +14,28 @@
     var rwdTableExtend = function(divId) {
         this.divId = divId;
         this.div = document.getElementById(divId);
+        this.table = null;
     };
     rwdTableExtend.prototype.initTable = function() {
-        var table = document.createElement("table");
-        table.id = "rwd-table";
-        table.className = "rwd-table";
-        var thead = document.createElement("thead");
-        var tbody = document.createElement("tbody");
-        table.appendChild(thead);
-        table.appendChild(tbody);
-        this.div.appendChild(table);  
+        this.table = document.createElement("table");
+        this.table.id = "rwd-table_" + Date.now();
+        this.table.className = "rwd-table";
+        this.thead = document.createElement("thead");
+        this.tbody = document.createElement("tbody");
+        this.table.appendChild(this.thead);
+        this.table.appendChild(this.tbody); 
+        this.div.appendChild(this.table);
     };
-    rwdTableExtend.prototype.addTableHead = function(array) {
-        this.table = document.getElementById("rwd-table");
-        this.thead = this.table.getElementsByTagName('thead')[0];
-        var hRow = this.thead.insertRow(0);              
+    rwdTableExtend.prototype.addTableHead = function(array) {      
+        var hRow = this.thead.insertRow(0);
+        var count = 0;              
         for(var idx in array){
             var header = document.createElement("th");
             header.innerHTML = array[idx];
             hRow.appendChild(header);
+            count ++;
         }
+        this.titleLength = count;
     };
     rwdTableExtend.prototype.updateHead = function(array) {
         if(this.thead === undefined || this.thead === null) {
@@ -44,10 +46,7 @@
             this.addTableHead(array);
         }
     };
-    rwdTableExtend.prototype.addTableRow = function(data, locate) { // data, row index
-        this.table = document.getElementById("rwd-table");
-        this.tbody = this.table.getElementsByTagName('tbody')[0];
-
+    rwdTableExtend.prototype.addDatas = function(data, locate) { // data, row index
         var rowIdx = this.tbody.rows.length;
         if(locate !== undefined || locate !== null) {
             rowIdx = locate;
@@ -65,23 +64,37 @@
     rwdTableExtend.prototype.deleteRow = function(idx, count) {
         if(count === undefined) count = 1;
         while(count>0){
-          document.getElementById("rwd-table").deleteRow(idx);
-          count--;  
+            this.tbody.deleteRow(idx);
+            count--;  
+        }        
+    };
+    rwdTableExtend.prototype.insertRow = function(idx, count, edit) {
+        if(count === undefined) count = 1;
+        console.log(this.titleLength);
+        while(count>0){
+            var dRow = this.tbody.insertRow(idx);
+            for(var i = 0; i < this.titleLength; i++){                
+                var cell = dRow.insertCell(i);
+                if(edit) {
+                    cell.setAttribute("contenteditable",true);
+                }
+            }            
+            count--;  
         }        
     };
     rwdTableExtend.prototype.hideContent = function(key) {
         var css = document.createElement("style");
         css.type = "text/css";
-        css.innerHTML = "@media screen and (max-width:451px) { .rwd-table td[data-th='"+key+"'] { display: none; }}";
+        css.innerHTML = "@media screen and (max-width:451px) { #"+this.table.id+" td[data-th='"+key+"'] { display: none; }}";
         document.body.appendChild(css);
     };
 
-    //set
+    //set header
     rwdTableExtend.prototype.setHeaderBackColor = function(color) {
-        var target = document.getElementById(this.divId);
+        this.thead.style.background = color;
     };
-    rwdTableExtend.prototype.setHeaderForeColor = function(color) {
-      
+    rwdTableExtend.prototype.setHeaderTextColor = function(color) {
+        this.thead.style.color = color;
     };
 
     if (typeof module !== 'undefined' && typeof module.exports !== 'undefined')
