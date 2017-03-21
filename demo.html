@@ -46,8 +46,9 @@
         <div id="myTable"></div>
         <script src="js/rwd-table-extend.js"></script>
         <script type="text/javascript">
+            console.log("rwdTableExtend.TYPE: "+rwdTableExtend.REDCircle);
             var myTable = new rwdTableExtend("myTable");
-            myTable.initTable();
+            myTable.initTable(false);
 
             myTable.addTableHead(['ID','Name', 'Number', 'Class', 'Address']);
 
@@ -55,7 +56,7 @@
                 "ID": "test1",
                 "Name": "Tom",
                 "Number":234,
-                "Class": "A",
+                "Class": rwdTableExtend.GREENCircle,
                 "Address": "Taiwan, Taipei"
             };
 
@@ -63,21 +64,39 @@
                 "ID": "test2",
                 "Name": "Sam",
                 "Number":123,
-                "Class": "B",
+                "Class": rwdTableExtend.REDCircle,
                 "Address": "Taiwan, Taipei"
             };
 
             var row3 = {
                 "ID": "test3",
                 "Name": "AAA",
-                "Number":123533,
-                "Class": "A",
+                "Number": { "value": -1, "foreColor": "red" },
+                "Class": rwdTableExtend.GREENCircle,
                 "Address": "Taiwan, New Taipei"
             };
 
-            myTable.addDatas(row1);
+            var dataSource = [
+                {
+                    "ID": "test4",
+                    "Name": "BBB",
+                    "Number":2222,
+                    "Class": rwdTableExtend.REDCircle,
+                    "Address": "Taiwan, New Taipei"
+                },
+                {
+                    "ID": "test5",
+                    "Name": "AAA",
+                    "Number":55555,
+                    "Class": rwdTableExtend.GREENCircle,
+                    "Address": "USA"
+                }
+            ];
+
+            myTable.addDatas(row1, true);
             myTable.addDatas(row2);
             myTable.addDatas(row3);
+            myTable.addDatas(dataSource);
 
             //insert with row index
             myTable.addDatas(row3,0);
