@@ -16,9 +16,16 @@
         this.div = document.getElementById(divId);
         this.table = null;
     };
+
     //const
     rwdTableExtend.REDCircle = "red_circle";
     rwdTableExtend.GREENCircle = "green_circle";
+    rwdTableExtend.BORDERTop = "border_top";
+    rwdTableExtend.BORDERBottom = "border_bottom";
+    rwdTableExtend.BORDERLeft = "border_left";
+    rwdTableExtend.BORDERRight = "border_right";
+
+    //method
     rwdTableExtend.prototype.initTable = function(flag) {
         console.log("[rwd-table-extend] initTable");
         this.table = document.createElement("table");
@@ -29,6 +36,7 @@
         this.table.appendChild(this.thead);
         this.table.appendChild(this.tbody); 
         this.div.appendChild(this.table);
+        this.rows = null;
         if(flag) this.setAutoView();
     };
     rwdTableExtend.prototype.setAutoView = function() {
@@ -38,7 +46,7 @@
         ".rwd-table tr {border: 1px solid #DDDDDD;}"+
         ".rwd-table th {display: none;}"+
         ".rwd-table td {display: block; border: none; text-indent: 10px;}"+
-        ".rwd-table td:before {content: attr(data-th) ''; float: left; font-weight: bold; color: #2196F3;";
+        ".rwd-table td:before {content: attr(data-th) ''; float: left; font-weight: bold; color: #2196F3;}}";
         document.body.appendChild(css);
         console.log("[rwd-table-extend] setAutoView: true ");
     };
@@ -105,15 +113,13 @@
             count--;  
         }        
     };
-    rwdTableExtend.prototype.insertRow = function(idx, count, edit) {
+    rwdTableExtend.prototype.insertRow = function(idx, count, editable) {
         count = count ? count : 1;
         while(count>0){
             var dRow = this.tbody.insertRow(idx);
             for(var i = 0; i < this.titleLength; i++){                
                 var cell = dRow.insertCell(i);
-                if(edit) {
-                    cell.setAttribute("contenteditable",true);
-                }
+                cell.setAttribute("contenteditable", editable ? editable : false);     
             }            
             count--;  
         }        
@@ -125,13 +131,43 @@
         document.body.appendChild(css);
     };
 
-    //set header
+    //control
+    rwdTableExtend.prototype.getRowCount = function() {
+        // update now row 
+        this.rows = document.getElementsByTagName("table")[0].rows;
+        return this.rows.length-1;
+    };
+
+    //style
     rwdTableExtend.prototype.setHeaderBackColor = function(color) {
         this.thead.style.background = color;
     };
     rwdTableExtend.prototype.setHeaderTextColor = function(color) {
         this.thead.style.color = color;
     };
+    rwdTableExtend.prototype.setRowBorder = function(rowIdx, locate, color) {
+        this.rows = document.getElementsByTagName("table")[0].rows;
+        if(locate == rwdTableExtend.BORDERTop) {
+            this.rows[rowIdx].style.borderTop = "1px solid "+color;
+        }
+        else if(locate == rwdTableExtend.BORDERBottom) {
+            this.rows[rowIdx].style.borderBottom = "1px solid "+color;
+        }
+    };
+    rwdTableExtend.prototype.setColBorder = function(colIdx, locate, color, withTitle) {
+        this.rows = document.getElementsByTagName("table")[0].rows;
+        for(var i = 0; i<this.rows.length; i++){
+            if(!withTitle && i === 0) continue;
+            var cell = this.rows[i].childNodes;
+            if(locate == rwdTableExtend.BORDERLeft) {
+                cell[colIdx].style.borderLeft = "1px solid "+color;
+            }
+            else if(locate == rwdTableExtend.BORDERRight) {               
+                cell[colIdx].style.borderRight = "1px solid "+color;
+            }
+        }
+    };
+
 
     if (typeof module !== 'undefined' && typeof module.exports !== 'undefined')
         module.exports = rwdTableExtend;
