@@ -225,12 +225,12 @@ rwdTableExtend.setColBorder(idx, locate, color, withTitle);
 
 #### 1.0.2-beta 
 * Add new feature:
-+ addDatas (multiple data)
-+ data cell foreColor
-+ setAutoView
-+ getRowCount
-+ setRowBorder
-+ setColBorder 
+    + addDatas (multiple data)
+    + data cell foreColor
+    + setAutoView
+    + getRowCount
+    + setRowBorder
+    + setColBorder 
 
 #### 1.0.1 
 * Add new feature
