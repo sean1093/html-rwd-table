@@ -198,7 +198,7 @@ rwdTableExtend.getRowCount();
 ```js
 /**
  * setRowBorder
- * @param {number} idx: data source
+ * @param {number} idx: column index
  * @param {const} locate: rwdTableExtend.BORDERTop /rwdTableExtend.BORDERBottom
  * @param {string} color: border's color (ex: "red")
  * @return {null}
@@ -210,9 +210,9 @@ rwdTableExtend.setRowBorder(idx, locate, color);
 
 ```js
 /**
- * setRowBorder
- * @param {number} idx: data source
- * @param {const} locate: rwdTableExtend.BORDERTop /rwdTableExtend.BORDERBottom
+ * setColBorder
+ * @param {number} idx: column index
+ * @param {const} locate: rwdTableExtend.BORDERLeft /rwdTableExtend.BORDERRight
  * @param {string} color: border's color (ex: "red")
  * @param {boolean} withTitle: column border with title row or not
  * @return {null}
