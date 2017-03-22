@@ -96,7 +96,7 @@ myTable.addDatas(dataSource);
 
 If you want to insert with specific row index, you can give row index in third parameter. For example, insert data into row 5. 
 ```js
-myTable.addDatas(row1, false, 5);        
+myTable.addDatas(dataSource, false, 5);        
 ```
 
 #### Set Data Style
@@ -113,7 +113,7 @@ var dataSource = {
 ```
 
 #### Color Light
-Sometimes, you will use light singal for some requirment, you can give these const in your value: (rwdTableExtend.REDCircle / rwdTableExtend.GREENCircle)
+Sometimes, you will use light singal for some requirment, you can give these const in your value: (<code>rwdTableExtend.REDCircle</code> / <code>rwdTableExtend.GREENCircle</code>)
 ```js
 var dataSource = {
     "ID": "test3",
