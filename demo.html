@@ -48,7 +48,7 @@
         <script type="text/javascript">
             console.log("rwdTableExtend.TYPE: "+rwdTableExtend.REDCircle);
             var myTable = new rwdTableExtend("myTable");
-            myTable.initTable(false);
+            myTable.initTable(true);
 
             myTable.addTableHead(['ID','Name', 'Number', 'Class', 'Address']);
 
@@ -93,13 +93,13 @@
                 }
             ];
 
-            myTable.addDatas(row1, true);
+            myTable.addDatas(row1, 0, true);
             myTable.addDatas(row2);
             myTable.addDatas(row3);
             myTable.addDatas(dataSource);
 
             //insert with row index
-            myTable.addDatas(row3,0);
+            myTable.addDatas(row3, 0);
 
             myTable.hideContent("Address");
 
@@ -129,10 +129,10 @@
 
             }
 
-            myTable.setRowBorder(3,rwdTableExtend.BORDERTop,"red");
-            myTable.setColBorder(3,rwdTableExtend.BORDERRight,"red", false);
+            // myTable.setRowBorder(3,rwdTableExtend.BORDERTop,"red");
+            // myTable.setColBorder(3,rwdTableExtend.BORDERRight,"red", false);
 
-            console.log("RowCount: "+myTable.getRowCount());
+            // console.log("RowCount: "+myTable.getRowCount());
 
 
         </script>
