@@ -2,7 +2,7 @@
  * rwd-table-extend.css
  * A RWD-based html table extend tool which made by pure JavaScript and CSS
  * see: https://github.com/sean1093/html-rwd-table for details
- * @version: v1.0.3
+ * @version: v1.0.2
  * @author: Sean Chou
  * @licensed: under MIT (https://github.com/sean1093/html-rwd-table/blob/master/LICENSE)
  */
@@ -12,11 +12,19 @@
     display: table;
 }
 
+.rwd-table th, td {
+    padding: 7px;             
+}
+
 table {
     width: 100%;
     display: table;
     border-collapse: collapse;
     border-spacing: 0;
+}
+
+table, th, td {
+    border: none;
 }
 
 thead {
@@ -26,44 +34,46 @@ thead {
 tr {
     display: table-row;
     vertical-align: inherit;
+    border-color: inherit;
 }
 
 td, th {
-    padding: 3px;
+    padding: 15px 5px;
     display: table-cell;
     text-align: left;
     vertical-align: middle;
+    border-radius: 2px;
+}
+table, th, td {
+    border: none;
 }
 
-.rwd-table td:hover .cell{
+.rwd-table tr:hover td {
     background-color: #DFEBF1;
 }
 
-td:hover {
-    background-color: #DFEBF1;
-}
 
 .green-circle{
-    margin: 0 auto;
-    width: 1em;
-    height: 1em;
-    background-color: #ABFF00;
-    border-radius: 50%;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #89FF00 0 2px 12px;
+  margin: 0 auto;
+  width: 1em;
+  height: 1em;
+  background-color: #ABFF00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #89FF00 0 2px 12px;
 }
 
 .red-circle {
-    margin: 0 auto;
-    width: 1em;
-    height: 1em;
-    background-color: #F00;
-    border-radius: 50%;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
-    -webkit-animation: blinkRed 0.5s infinite;
-    -moz-animation: blinkRed 0.5s infinite;
-    -ms-animation: blinkRed 0.5s infinite;
-    -o-animation: blinkRed 0.5s infinite;
-    animation: blinkRed 0.5s infinite;
+  margin: 0 auto;
+  width: 1em;
+  height: 1em;
+  background-color: #F00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
+  -webkit-animation: blinkRed 0.5s infinite;
+  -moz-animation: blinkRed 0.5s infinite;
+  -ms-animation: blinkRed 0.5s infinite;
+  -o-animation: blinkRed 0.5s infinite;
+  animation: blinkRed 0.5s infinite;
 }
 
 @-webkit-keyframes blinkRed {

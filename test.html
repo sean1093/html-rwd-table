@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <link href="css/rwd-table-extend.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="myTable"></div>
+        <script src="js/rwd-table-extend.js"></script>
+        <script type="text/javascript">
+            var config = {
+                "border": true,
+                "borderColor": "#0000FF"
+            };
+
+            console.log("rwdTableExtend.TYPE: "+rwdTableExtend.REDCircle);
+            var myTable = new rwdTableExtend("myTable");
+            myTable.initTable(false);
+
+            myTable.addTableHead(['ID','Name', 'Number', 'Class', 'Address']);
+
+            var row1 = {
+                "ID": "test1",
+                "Name": "Tom",
+                "Number":234,
+                "Class": rwdTableExtend.GREENCircle,
+                "Address": "Taiwan, Taipei"
+            };
+            var row3 = {
+                "ID": "test3",
+                "Name": {
+                    "value":"AAA",
+                    "background":"green",
+                },
+                "Number": { 
+                    "value": -1, 
+                    "foreColor": "red",
+                    "fontSize": "11px",
+                    "fontFamily": "Arial",
+                    "textAlign": rwdTableExtend.ALIGNCenter 
+                },
+                "Class": rwdTableExtend.GREENCircle,
+                "Address": "Taiwan, New Taipei"
+            };
+
+            myTable.addDatas(row1);
+            myTable.addDatas(row3);
+
+
+
+            myTable.addRowDatas(1,["aaa","bbb","ccc"]);
+            myTable.setHeaderBackColor("#5599FF");
+
+            myTable.setRowBackColor(2,"#FFFFBB");
+
+            myTable.tableConfig(config);
+
+        </script>
+    </body>
+</html>

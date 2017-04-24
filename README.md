@@ -9,8 +9,8 @@ http://sean1093.github.io/demo/rwd-table-extend/rwd-table.html
 When you want to use RWD html table extension, you need to include both CSS file and JavaScript file.
 
 ```html
-<link href="http://sean1093.github.io/lib/css/rwd-table-extend/1.0.2/rwd-table-extend.css" rel="stylesheet">
-<script src="http://sean1093.github.io/lib/js/rwd-table-extend/1.0.2/rwd-table-extend.min.js"></script>
+<link href="http://sean1093.github.io/lib/css/rwd-table-extend/1.0.3/rwd-table-extend.min.css" rel="stylesheet">
+<script src="http://sean1093.github.io/lib/js/rwd-table-extend/1.0.3/rwd-table-extend.min.js"></script>
 ```
 
 
@@ -222,11 +222,17 @@ rwdTableExtend.setColBorder(idx, locate, color, withTitle);
 
 
 ### Change Log
+#### 1.0.3 
+* Add new feature:
+    + addRowDatas (by array of data)
+    + data cell fontSize, fontFamily and textAlign
+    + setRowBackColor
+    + tableConfig
 
-#### 1.0.2-beta 
+#### 1.0.2 
 * Add new feature:
     + addDatas (multiple data)
-    + data cell foreColor
+    + data cell foreColor & background
     + setAutoView
     + getRowCount
     + setRowBorder
