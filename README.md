@@ -99,15 +99,29 @@ If you want to insert with specific row index, you can give row index in third p
 myTable.addDatas(dataSource, false, 5);        
 ```
 
-#### Set Data Style
+#### Set Data Style (available after v1.0.3)
 If you want to set cell style, you can give the object value when you add data:
-(we only provide foreColor in v1.0.2, will increase in future version)
+foreColor: color text or color code
+background : color text or color code
+fontSize: px / em / rem
+fontFamily: generic-family 
+textAlign: rwdTableExtend.ALIGNCenter / rwdTableExtend.ALIGNLeft / rwdTableExtend.ALIGNRight
+
 ```js
 var dataSource = {
     "ID": "test3",
-    "Name": "AAA",
-    "Number": { "value": -1, "foreColor": "red" },
-    "Class": "A",
+    "Name": {
+        "value":"AAA",
+        "background":"green",
+    },
+    "Number": { 
+        "value": -1, 
+        "foreColor": "red",
+        "fontSize": "11px",
+        "fontFamily": "Arial",
+        "textAlign": rwdTableExtend.ALIGNCenter 
+    },
+    "Class": rwdTableExtend.GREENCircle,
     "Address": "Taiwan, New Taipei"
 };
 ```
