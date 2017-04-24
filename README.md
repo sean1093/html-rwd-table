@@ -101,11 +101,11 @@ myTable.addDatas(dataSource, false, 5);
 
 #### Set Data Style (available after v1.0.3)
 If you want to set cell style, you can give the object value when you add data:
-foreColor: color text or color code
-background : color text or color code
-fontSize: px / em / rem
-fontFamily: generic-family 
-textAlign: rwdTableExtend.ALIGNCenter / rwdTableExtend.ALIGNLeft / rwdTableExtend.ALIGNRight
+* foreColor: color text or color code
+* background : color text or color code
+* fontSize: px / em / rem
+* fontFamily: generic-family 
+* textAlign: <code>rwdTableExtend.ALIGNCenter</code> / <code>rwdTableExtend.ALIGNLeft</code> / <code>rwdTableExtend.ALIGNRight</code>
 
 ```js
 var dataSource = {
