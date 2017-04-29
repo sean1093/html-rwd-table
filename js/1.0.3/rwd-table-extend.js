@@ -2,7 +2,7 @@
  * rwd-table-extend.js
  * A RWD-based html table extend tool which made by pure JavaScript and CSS
  * see: https://github.com/sean1093/html-rwd-table for details
- * @version: v1.0.4-dev
+ * @version: v1.0.3
  * @author: Sean Chou
  * @licensed: under MIT (https://github.com/sean1093/html-rwd-table/blob/master/LICENSE)
  */
@@ -22,8 +22,6 @@
     };
 
     //const
-    rwdTableExtend.TYPEDiv = "div";
-    rwdTableExtend.TYPETable = "table";
     rwdTableExtend.REDCircle = "red_circle";
     rwdTableExtend.GREENCircle = "green_circle";
     rwdTableExtend.BORDERTop = "border_top";
@@ -35,25 +33,18 @@
     rwdTableExtend.ALIGNCenter = "center";
 
     //method
-    rwdTableExtend.prototype.initTable = function(type, flag) {
-        // default type: table, auto view: false
+    rwdTableExtend.prototype.initTable = function(flag) {
         console.log("[rwd-table-extend] initTable");
-        type = type || rwdTableExtend.TYPETable;
-        if(type == rwdTableExtend.TYPETable) {
-            this.table = document.createElement("table");
-            this.table.id = "rwd-table_" + Date.now();
-            this.table.className = "rwd-table";
-            this.thead = document.createElement("thead");
-            this.tbody = document.createElement("tbody");
-            this.table.appendChild(this.thead);
-            this.table.appendChild(this.tbody); 
-            this.div.appendChild(this.table);
-            this.rows = null;
-            this.rowCount = 0;
-            this.titleRowCount = 0;
-            this.columnCount = 0;
-            if(flag) this.setAutoView();           
-        }
+        this.table = document.createElement("table");
+        this.table.id = "rwd-table_" + Date.now();
+        this.table.className = "rwd-table";
+        this.thead = document.createElement("thead");
+        this.tbody = document.createElement("tbody");
+        this.table.appendChild(this.thead);
+        this.table.appendChild(this.tbody); 
+        this.div.appendChild(this.table);
+        this.rows = null;
+        if(flag) this.setAutoView();
     };
     rwdTableExtend.prototype.setAutoView = function() {
         var css = document.createElement("style");
@@ -66,8 +57,8 @@
         document.body.appendChild(css);
         console.log("[rwd-table-extend] setAutoView: true ");
     };
-    rwdTableExtend.prototype.addTableHead = function(idx, array) {     
-        var hRow = this.thead.insertRow(idx);
+    rwdTableExtend.prototype.addTableHead = function(array) {     
+        var hRow = this.thead.insertRow(0);
         var count = 0;              
         for(var idx in array){
             var header = document.createElement("th");
@@ -125,9 +116,10 @@
             rowIdx ++;                
         }
     };
-    rwdTableExtend.prototype.addRowDatas = function(idx, data, editable) {     
-        var length = this.getColumnCount();
-        var row = this.tbody.insertRow(idx);
+    rwdTableExtend.prototype.addRowDatas = function(idx, data, editable) {
+        var length = this.table.rows[0].cells.length;
+        console.log(length);
+        var row = this.table.insertRow(idx+1);
         for(var i = 0; i < length; i++) {
             var cell = row.insertCell(i);
             var div = document.createElement("div");
@@ -165,54 +157,30 @@
     };
 
     //control
-    rwdTableExtend.prototype.getColumnCount = function() {      
-        this._updateColumnCount();
-        return this.columnCount;
+    rwdTableExtend.prototype.getRowCount = function() {
+        // update now row 
+        this.rows = this.table.rows;
+        return this.rows.length-1;
     };
-    rwdTableExtend.prototype.getRowCount = function() {       
-        this._updateRowCount();
-        return this.rowCount;
-    };
-    rwdTableExtend.prototype._updateRowCount = function() { 
-        this.rows = this.tbody.rows; // update now row 
-        this.rowCount = this.rows.length;        
-    }
-    rwdTableExtend.prototype._updateColumnCount = function() { 
-        this.titleRowCount = this.thead.rows.length;
-        for(var i = 0; i<this.titleRowCount ; i++) {
-            this.columnCount = this.table.rows[i].cells.length > this.columnCount ? this.table.rows[i].cells.length : this.columnCount;
-        }       
-    }
 
     //style
-    rwdTableExtend.prototype.setHeaderBackColor = function(headerIdx, color) {
-        var rows = this.thead.rows;
-        rows[headerIdx].style.background = color;
+    rwdTableExtend.prototype.setHeaderBackColor = function(color) {
+        this.setRowBackColor(0, color);
     };
     rwdTableExtend.prototype.setRowBackColor = function(rowIdx, color) {
-        var rows = this.tbody.rows;
+        var rows = this.table.rows;
         rows[rowIdx].style.background = color;
     };
-    rwdTableExtend.prototype.setHeaderTextColor = function(headerIdx, color) {
-        var rows = this.thead.rows;
-        rows[headerIdx].style.color = color;
+    rwdTableExtend.prototype.setHeaderTextColor = function(color) {
+        this.thead.style.color = color;
     };
     rwdTableExtend.prototype.setRowBorder = function(rowIdx, locate, color) {
-        this.rows = this.tbody.rows;
+        this.rows = this.table.rows;
         if(locate == rwdTableExtend.BORDERTop) {
             this.rows[rowIdx].style.borderTop = "1px solid "+_nullable(color,"black");
         }
         else if(locate == rwdTableExtend.BORDERBottom) {
             this.rows[rowIdx].style.borderBottom = "1px solid "+_nullable(color,"black");
-        }
-    };
-    rwdTableExtend.prototype.setHeaderBorder = function(headerIdx, locate, color) {
-        this.rows = this.thead.rows;
-        if(locate == rwdTableExtend.BORDERTop) {
-            this.rows[headerIdx].style.borderTop = "1px solid "+_nullable(color,"black");
-        }
-        else if(locate == rwdTableExtend.BORDERBottom) {
-            this.rows[headerIdx].style.borderBottom = "1px solid "+_nullable(color,"black");
         }
     };
     rwdTableExtend.prototype.setColBorder = function(colIdx, locate, color, withTitle) {

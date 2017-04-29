@@ -14,9 +14,10 @@
 
             console.log("rwdTableExtend.TYPE: "+rwdTableExtend.REDCircle);
             var myTable = new rwdTableExtend("myTable");
-            myTable.initTable(false);
+            myTable.initTable();
 
-            myTable.addTableHead(['ID','Name', 'Number', 'Class', 'Address']);
+            myTable.addTableHead(0, ['ID','Name', 'Number', 'Class', 'Address']);
+            myTable.addTableHead(1, ['ID1','Name1', 'Number1', 'Class1']);
 
             var row1 = {
                 "ID": "test1",
@@ -48,11 +49,16 @@
 
 
             myTable.addRowDatas(1,["aaa","bbb","ccc"]);
-            myTable.setHeaderBackColor("#5599FF");
+            myTable.setHeaderBackColor(0, "#5599FF");
+            myTable.setHeaderBackColor(1, "#FFF176");
 
-            myTable.setRowBackColor(2,"#FFFFBB");
-
+            myTable.setRowBackColor(1,"#FFFFBB");
+            myTable.setHeaderBorder(1, rwdTableExtend.BORDERBottom,"red");
             myTable.tableConfig(config);
+
+            console.log("getRowCount: "+myTable.getRowCount());
+            console.log("getColumnCount: "+myTable.getColumnCount());
+
 
         </script>
     </body>
