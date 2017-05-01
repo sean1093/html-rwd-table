@@ -56,9 +56,8 @@
         }
     };
     rwdTableExtend.prototype.setSize = function(height, width) {
-        this.table.style.overflow = "auto";
-        this.table.style.height = "400px"
-
+        this.table.style.height = height;
+        this.table.style.width = width !== undefined ? width : "100%";
     };
     rwdTableExtend.prototype.setAutoView = function() {
         var css = document.createElement("style");
@@ -173,10 +172,8 @@
             var translate = "translate(0,"+this.scrollTop+"px)";
             this.querySelector("thead").style.transform = translate;
         });
-
         this.div.style.overflow = "auto";
-        this.div.style.height = "100px"
-
+        this.div.style.height = this.div.style.height !== undefined ? this.div.style.height : "300px"
     };
 
 
