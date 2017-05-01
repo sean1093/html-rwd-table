@@ -55,6 +55,11 @@
             if(flag) this.setAutoView();           
         }
     };
+    rwdTableExtend.prototype.setSize = function(height, width) {
+        this.table.style.overflow = "auto";
+        this.table.style.height = "400px"
+
+    };
     rwdTableExtend.prototype.setAutoView = function() {
         var css = document.createElement("style");
         css.type = "text/css";
@@ -78,13 +83,13 @@
         this.titleLength = count;
         console.log("[rwd-table-extend] addTableHead"); 
     };
-    rwdTableExtend.prototype.updateHead = function(array) {
+    rwdTableExtend.prototype.updateHead = function(idx, array) {
         if(this.thead === undefined || this.thead === null) {
             console.error("[rwd-table-extend] Please add table header first!");
         }
         else {
-            var hRow = this.thead.deleteRow(0); 
-            this.addTableHead(array);
+            var hRow = this.thead.deleteRow(idx); 
+            this.addTableHead(idx, array);
         }
     };
     rwdTableExtend.prototype.addDatas = function(source, editable, locate) { // data{}/[{},...{}], editable, row index
@@ -163,8 +168,20 @@
         css.innerHTML = "@media screen and (max-width:451px) { #"+this.table.id+" td[data-th='"+key+"'] { display: none; }}";
         document.body.appendChild(css);
     };
+    rwdTableExtend.prototype.fixHeader = function() {
+        this.div.addEventListener("scroll", function(){
+            var translate = "translate(0,"+this.scrollTop+"px)";
+            this.querySelector("thead").style.transform = translate;
+        });
 
-    //control
+        this.div.style.overflow = "auto";
+        this.div.style.height = "100px"
+
+    };
+
+
+
+    //get info
     rwdTableExtend.prototype.getColumnCount = function() {      
         this._updateColumnCount();
         return this.columnCount;
