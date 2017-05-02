@@ -56,8 +56,8 @@
         }
     };
     rwdTableExtend.prototype.setSize = function(height, width) {
-        this.table.style.height = height;
-        this.table.style.width = width !== undefined ? width : "100%";
+        this.div.style.height = height;
+        this.div.style.width = width !== undefined ? width : "100%";
     };
     rwdTableExtend.prototype.setAutoView = function() {
         var css = document.createElement("style");
@@ -73,9 +73,9 @@
     rwdTableExtend.prototype.addTableHead = function(idx, array) {     
         var hRow = this.thead.insertRow(idx);
         var count = 0;              
-        for(var idx in array){
+        for(var i in array){
             var header = document.createElement("th");
-            header.innerHTML = array[idx];
+            header.innerHTML = array[i];
             hRow.appendChild(header);
             count ++;
         }
@@ -173,7 +173,9 @@
             this.querySelector("thead").style.transform = translate;
         });
         this.div.style.overflow = "auto";
-        this.div.style.height = this.div.style.height !== undefined ? this.div.style.height : "300px"
+        console.log("this.div.style.height: "+this.div.style.height);
+        console.log("this.div.style.height.length: "+this.div.style.height.length);
+        this.div.style.height = this.div.style.height.length !== 0 ? this.div.style.height : "300px";
     };
 
 
@@ -190,13 +192,13 @@
     rwdTableExtend.prototype._updateRowCount = function() { 
         this.rows = this.tbody.rows; // update now row 
         this.rowCount = this.rows.length;        
-    }
+    };
     rwdTableExtend.prototype._updateColumnCount = function() { 
         this.titleRowCount = this.thead.rows.length;
         for(var i = 0; i<this.titleRowCount ; i++) {
             this.columnCount = this.table.rows[i].cells.length > this.columnCount ? this.table.rows[i].cells.length : this.columnCount;
         }       
-    }
+    };
 
     //style
     rwdTableExtend.prototype.setHeaderBackColor = function(headerIdx, color) {

@@ -4,6 +4,7 @@
         <link href="css/rwd-table-extend.css" rel="stylesheet">
     </head>
     <body>
+        <button onclick="test()">test</button>
         <div id="myTable"></div>
         <script src="js/rwd-table-extend.js"></script>
         <script type="text/javascript">
@@ -49,6 +50,9 @@
 
 
             myTable.addRowDatas(1,["aaa","bbb","ccc"]);
+            for(var i=0; i<10; i++) {
+                myTable.addRowDatas(0,["test","bbb","ccc", "1234567"]);
+            }
             myTable.setHeaderBackColor(0, "#5599FF");
             myTable.setHeaderBackColor(1, "#FFF176");
 
@@ -58,8 +62,12 @@
 
             console.log("getRowCount: "+myTable.getRowCount());
             console.log("getColumnCount: "+myTable.getColumnCount());
-
+            // myTable.setSize("100px");
             myTable.fixHeader();
+
+            function test(){
+                // myTable.setSize("100px");
+            }
 
         </script>
     </body>
