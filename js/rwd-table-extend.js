@@ -2,7 +2,7 @@
  * rwd-table-extend.js
  * A RWD-based html table extend tool which made by pure JavaScript and CSS
  * see: https://github.com/sean1093/html-rwd-table for details
- * @version: v1.0.4-dev
+ * @version: v1.0.4
  * @author: Sean Chou
  * @licensed: under MIT (https://github.com/sean1093/html-rwd-table/blob/master/LICENSE)
  */
@@ -103,13 +103,21 @@
                 var div = document.createElement("div");
                 div.className += ' cell';
                 if(typeof data[key] == "object") {
-                    var t = document.createTextNode(data[key].value);
-                    div.appendChild(t);
+                    var t = document.createTextNode(data[key].value);                   
                     div.style.color = _nullable(data[key].foreColor, "black");
                     div.style.background = _nullable(data[key].background, "white");
                     div.style.fontSize = _nullable(data[key].fontSize, "none");
                     div.style.fontFamily = _nullable(data[key].fontFamily, "none");
                     div.style.textAlign = _nullable(data[key].textAlign, rwdTableExtend.ALIGNLeft);
+                    if(data[key].hyperlink) {
+                        var a = document.createElement("a");
+                        a.href = data[key].hyperlink;
+                        a.appendChild(t);
+                        div.appendChild(a);
+                    }
+                    else {
+                        div.appendChild(t);
+                    }
                 }
                 else if(data[key] == rwdTableExtend.REDCircle) {                    
                     div.className += ' red-circle';
